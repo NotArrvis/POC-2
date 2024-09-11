@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>JavaScript Array POC</title>
+		<style>
+			body {
+				line-height: 1.6;
+				color: #333;
+				max-width: 800px;
+				margin: 0 auto;
+				padding: 20px;
+			}
+			h1 {
+				color: rgb(0, 0, 100);
+				display: flex;
+				justify-content: center;
+			}
+			.metodo {
+				background-color: rgb(220, 220, 220);
+				border-radius: 5px;
+				padding: 15px;
+				margin-bottom: 20px;
+			}
+			.metodo h2 {
+				color: rgb(153, 0, 200);
+				margin-top: 0;
+				display: flex;
+				justify-content: center;
+			}
+			button {
+				background-color: #3498db;
+				color: white;
+				border: none;
+				padding: 10px 15px;
+				cursor: pointer;
+				border-radius: 3px;
+			}
+			button:hover {
+				background-color: #2980b9;
+			}
+			pre {
+				background-color: #ecf0f1;
+				padding: 10px;
+				border-radius: 3px;
+				white-space: pre-wrap;
+				word-wrap: break-word;
+			}
+
+			.metodo p {
+				display: flex;
+				justify-content: center;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>JavaScript Array POC</h1>
+
+		<div class="metodo">
+			<h2>Array original</h2>
+			<p>
+				Temos um array de numeros com os seguintes valores e ordem: 3,
+				1, 4, 1, 5, 9, 2, 6, 5, 3, 5
+			</p>
+			<p>
+				Tem se também um array de palavras: 'Maça', 'Banana', 'Cenoura',
+				'Abacaxi', 'Tomate'
+			</p>
+		</div>
+
+		<div class="metodo">
+			<h2>Sort</h2>
+			<p>
+				Clique o botão e veja o Array em forma crescente, e as palavras
+				em ordem alfabetica!
+			</p>
+			<button onclick="demonstrarSort()">Sort</button>
+			<pre id="resultadoSort"></pre>
+		</div>
+
+		<div class="metodo">
+			<h2>Map</h2>
+			<p>
+				O map realiza uma operação pré definida, neste caso o quadrado
+				de cada número:
+			</p>
+			<button onclick="demonstraMap()">Map</button>
+			<pre id="resultadoMap"></pre>
+		</div>
+
+		<div class="metodo">
+			<h2>Reduce</h2>
+			<p>Reduz o array para um único resultado, neste caso a soma!</p>
+			<button onclick="demonstrarReduce()">Reduce</button>
+			<pre id="resultadoReduce"></pre>
+		</div>
+
+		<div class="metodo">
+			<h2>Filter</h2>
+			<p>
+				O filter ira apropriadamente filtrar sob nossas especificações,
+				no caso números pares!
+			</p>
+			<button onclick="demonstrarFIlter()">Filter</button>
+			<pre id="resultadoFilter"></pre>
+		</div>
+
+		<div class="metodo">
+			<h2>Spread</h2>
+			<p>
+				Spread pode permitir que algo iterável, como no caso um array,
+				seja expandido em locais, onde um zero, mais argumentos ou
+				elementos forem esperados, aqui sera usado para combinar os
+				arrays!
+			</p>
+			<button onclick="demonstrarSpread()">Spread</button>
+			<pre id="resultadoSpread"></pre>
+		</div>
+
+		<script>
+			const numeros = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5];
+			const palavras = ['Maça', 'Banana', 'Cenoura', 'Abacaxi', 'Tomate'];
+
+			function demonstrarSort() {
+				const sortednumeros = [...numeros].sort((a, b) => a - b);
+				const sortedpalavras = [...palavras].sort();
+				document.getElementById('resultadoSort').textContent =
+					`Numeros pós sort: ${JSON.stringify(sortednumeros)}\n` +
+					`Palavras pós sort: ${JSON.stringify(sortedpalavras)}`;
+			}
+
+			function demonstraMap() {
+				const numeroQuadrado = numeros.map((num) => num * num);
+				document.getElementById(
+					'resultadoMap'
+				).textContent = `Quadrado dos numeros: ${JSON.stringify(
+					numeroQuadrado
+				)}`;
+			}
+
+			function demonstrarReduce() {
+				const sum = numeros.reduce((acc, curr) => acc + curr, 0);
+				document.getElementById(
+					'resultadoReduce'
+				).textContent = `Soma dos numeros: ${sum}`;
+			}
+
+			function demonstrarFIlter() {
+				const numerosPar = numeros.filter((num) => num % 2 === 0);
+				document.getElementById(
+					'resultadoFilter'
+				).textContent = `Numeros pares: ${JSON.stringify(numerosPar)}`;
+			}
+
+			function demonstrarSpread() {
+				const combinedArray = [...numeros, ...palavras];
+				document.getElementById(
+					'resultadoSpread'
+				).textContent = `Array combinado: ${JSON.stringify(
+					combinedArray
+				)}`;
+			}
+		</script>
+	</body>
+</html>
